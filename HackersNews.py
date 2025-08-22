@@ -11,8 +11,7 @@ def get_top_ids():
     return news_ids
 
 
-if __name__ == "__main__":
-
+def get_top_articles():
     # 各記事のidをurlに当てはめる
     for i in range(30):
         sleep(1)
@@ -22,4 +21,12 @@ if __name__ == "__main__":
         response = get(article)
         news_data = response.json()
 
-        print(f"title: {news_data["title"]}, link: {news_data["url"]}")
+        if ("title" and "url") in news_data:
+            article_box = {"title": news_data["title"], "link": news_data["url"]}
+            print(article_box)
+        else:
+            pass
+
+
+if __name__ == "__main__":
+    get_top_articles()
